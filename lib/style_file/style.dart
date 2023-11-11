@@ -12,7 +12,7 @@ TextStyle headTextStyle() {
 
 TextStyle subTitle() {
   return const TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     color: Colors.grey,
   );
