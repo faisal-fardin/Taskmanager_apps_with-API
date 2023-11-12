@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:pin_code_fields/pin_code_fields.dart';
-// import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 TextStyle headTextStyle() {
   return const TextStyle(
@@ -36,7 +35,7 @@ InputDecoration appInputStyle(label, {IconButton}){
 ButtonStyle buttonStyle() {
   return ElevatedButton.styleFrom(
     backgroundColor: Colors.green,
-    padding: const EdgeInsets.symmetric(vertical: 15),
+    padding: const EdgeInsets.symmetric(vertical: 20),
     shadowColor: const Color(0x00000004),
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -45,19 +44,19 @@ ButtonStyle buttonStyle() {
   );
 }
 
-//
-// PinTheme AppOTPStyle() {
-//   return PinTheme(
-//     inactiveColor: Colors.grey,
-//     inactiveFillColor: Colors.white,
-//     selectedColor: Colors.green,
-//     activeColor: Colors.white,
-//     selectedFillColor: Colors.green,
-//     shape: PinCodeFieldShape.box,
-//     borderRadius: BorderRadius.circular(5),
-//     fieldHeight: 50,
-//     borderWidth: 0.5,
-//     fieldWidth: 50,
-//     activeFillColor: Colors.white,
-//   );
-// }
+
+PinTheme appOTPStyle() {
+  return PinTheme(
+    inactiveColor: Colors.grey,
+    inactiveFillColor: Colors.white,
+    selectedColor: Colors.green,
+    activeColor: Colors.white,
+    selectedFillColor: Colors.green,
+    shape: PinCodeFieldShape.box,
+    borderRadius: BorderRadius.circular(5),
+    fieldHeight: 50,
+    borderWidth: 0.5,
+    fieldWidth: 50,
+    activeFillColor: Colors.white,
+  );
+}

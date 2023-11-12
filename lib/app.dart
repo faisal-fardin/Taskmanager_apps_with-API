@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskmanager_apps_api/ui/screen/email_verification_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/login_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/otp_verification_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/raset_password.dart';
 import 'package:taskmanager_apps_api/ui/screen/splash_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
@@ -26,6 +28,8 @@ class TaskManagerApp extends StatelessWidget {
         GetPage(name: '/', page: ()=> const SplashScreen()),
         GetPage(name: '/LogIn', page: ()=> const LoginScreen()),
         GetPage(name: '/EmailVerification', page: ()=> const EmailVerificationScreen()),
+        GetPage(name: '/OtpVerification', page: ()=> const OtpVerificationScreen()),
+        GetPage(name: '/ResetPassword', page: ()=> const ResetPasswordScreen()),
       ],
     );
   }
