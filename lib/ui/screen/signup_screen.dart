@@ -1,18 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taskmanager_apps_api/ui/widgets/screen_background.dart';
 
 import '../../style_file/style.dart';
-import '../widgets/screen_background.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool isVisible = true;
 
   @override
@@ -24,22 +23,44 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(22.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 65,),
-                     Text(
-                      'Set Password',
-                      style: headTextStyle(),
+                    const Text(
+                      'Sign Up Now',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
                     const SizedBox(
-                      height: 4,
+                      height: 10,
                     ),
-                    Text(
-                      'Minimum length password 8  character with \nlatter and number ',
-                      style: subTitle(),
+                    TextFormField(
+                      decoration: appInputStyle('First Name'),
                     ),
                     const SizedBox(
-                      height: 24,
+                      height: 10,
+                    ),
+                    TextFormField(
+                      decoration: appInputStyle('Last name'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      decoration: appInputStyle('Email'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      decoration: appInputStyle('Phone'),
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     TextFormField(
                       obscureText: isVisible,
@@ -57,25 +78,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      obscureText: isVisible,
-                      decoration: appInputStyle(
-                        'Confirm Password',
-                        IconButton: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isVisible = !isVisible;
-                            });
-                          },
-                          icon: Icon(
-                              isVisible ? Icons.visibility_off : Icons.visibility),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 14,
+                      height: 20,
                     ),
                     SizedBox(
                       width: double.infinity,
@@ -84,17 +87,31 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         onPressed: () {
                           Get.offNamed('/LogIn');
                         },
-                        child: const Text('Confirm'),
+                        child: const Icon(Icons.arrow_forward_ios),
                       ),
                     ),
                     const SizedBox(
-                      height: 25,
+                      height: 16,
+                    ),
+                    Center(
+                      child: TextButton(
+                        onPressed: () {
+                          Get.offNamed('/EmailVerification');
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          "Have account?",
+                          "Don't have account?",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             letterSpacing: 0.6,
@@ -102,9 +119,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.offNamed('/LogIn');
+                            Get.toNamed('/SignUpScreen');
                           },
-                          child: const Text('Sign In'),
+                          child: const Text('Sign up'),
                         ),
                       ],
                     )
@@ -116,3 +133,4 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     );
   }
 }
+

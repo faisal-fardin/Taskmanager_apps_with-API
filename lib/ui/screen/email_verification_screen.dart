@@ -71,7 +71,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.toNamed('/LogIn');
+                            Get.offNamed('/LogIn');
                           },
                           child: const Text('Sign In'),
                         ),
