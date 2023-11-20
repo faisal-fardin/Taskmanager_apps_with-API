@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                     style: buttonStyle(),
                     onPressed: () {
-
+                      Get.offNamed('/ButtonNavBar');
                     },
                     child: const Icon(Icons.arrow_forward_ios),
                   ),
