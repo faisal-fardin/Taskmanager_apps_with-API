@@ -17,7 +17,7 @@ class TaskManagerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Task Manager',
+      title: 'Task Manager App',
       theme: ThemeData(
         brightness: Brightness.light,
       ),
