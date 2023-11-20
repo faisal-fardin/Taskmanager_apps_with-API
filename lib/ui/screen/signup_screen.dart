@@ -91,27 +91,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 16,
-                    ),
-                    Center(
-                      child: TextButton(
-                        onPressed: () {
-                          Get.offNamed('/EmailVerification');
-                        },
-                        child: const Text(
-                          'Forgot Password?',
-                          style: TextStyle(fontSize: 15, color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
                       height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          "Don't have account?",
+                          "Have an account?",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             letterSpacing: 0.6,
