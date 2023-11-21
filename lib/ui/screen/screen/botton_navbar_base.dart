@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager_apps_api/ui/screen/cancel_task_screen.dart';
-import 'package:taskmanager_apps_api/ui/screen/completed_task_screen.dart';
-import 'package:taskmanager_apps_api/ui/screen/in_progress_screen.dart';
-import 'package:taskmanager_apps_api/ui/screen/new_task_screen.dart';
+import 'cancel_task_screen.dart';
+import 'completed_task_screen.dart';
+import 'in_progress_screen.dart';
+import 'new_task_screen.dart';
 
 class ButtonNavBar extends StatefulWidget {
   const ButtonNavBar({super.key});

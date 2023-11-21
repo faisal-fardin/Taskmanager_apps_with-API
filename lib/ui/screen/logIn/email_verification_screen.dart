@@ -2,19 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../style_file/style.dart';
-import '../widgets/screen_background.dart';
+import '../../../style_file/style.dart';
+import '../../widgets/screen_background.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+class EmailVerificationScreen extends StatefulWidget {
+  const EmailVerificationScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-  bool isVisible = true;
-
+class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,51 +26,22 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   children: [
                     const SizedBox(height: 65,),
                      Text(
-                      'Set Password',
+                      'Your Email Address',
                       style: headTextStyle(),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
-                      'Minimum length password 8  character with \nlatter and number ',
+                      'A 6 digits pin will sent to your email address',
                       style: subTitle(),
                     ),
                     const SizedBox(
                       height: 24,
                     ),
                     TextFormField(
-                      obscureText: isVisible,
-                      decoration: appInputStyle(
-                        'Password',
-                        IconButton: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isVisible = !isVisible;
-                            });
-                          },
-                          icon: Icon(
-                              isVisible ? Icons.visibility_off : Icons.visibility),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      obscureText: isVisible,
-                      decoration: appInputStyle(
-                        'Confirm Password',
-                        IconButton: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isVisible = !isVisible;
-                            });
-                          },
-                          icon: Icon(
-                              isVisible ? Icons.visibility_off : Icons.visibility),
-                        ),
-                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: appInputStyle('Email'),
                     ),
                     const SizedBox(
                       height: 14,
@@ -82,13 +51,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       child: ElevatedButton(
                         style: buttonStyle(),
                         onPressed: () {
-                          Get.offNamed('/LogIn');
+                          Get.toNamed('/OtpVerification');
                         },
-                        child: const Text('Confirm'),
+                        child: const Icon(Icons.arrow_circle_right_outlined),
                       ),
                     ),
                     const SizedBox(
-                      height: 25,
+                      height: 22,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

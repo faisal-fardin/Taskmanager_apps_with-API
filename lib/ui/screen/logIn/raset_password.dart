@@ -2,17 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../style_file/style.dart';
-import '../widgets/screen_background.dart';
+import '../../../style_file/style.dart';
+import '../../widgets/screen_background.dart';
 
-class EmailVerificationScreen extends StatefulWidget {
-  const EmailVerificationScreen({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+  bool isVisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,22 +28,51 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   children: [
                     const SizedBox(height: 65,),
                      Text(
-                      'Your Email Address',
+                      'Set Password',
                       style: headTextStyle(),
                     ),
                     const SizedBox(
                       height: 4,
                     ),
                     Text(
-                      'A 6 digits pin will sent to your email address',
+                      'Minimum length password 8  character with \nlatter and number ',
                       style: subTitle(),
                     ),
                     const SizedBox(
                       height: 24,
                     ),
                     TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: appInputStyle('Email'),
+                      obscureText: isVisible,
+                      decoration: appInputStyle(
+                        'Password',
+                        IconButton: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isVisible = !isVisible;
+                            });
+                          },
+                          icon: Icon(
+                              isVisible ? Icons.visibility_off : Icons.visibility),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      obscureText: isVisible,
+                      decoration: appInputStyle(
+                        'Confirm Password',
+                        IconButton: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isVisible = !isVisible;
+                            });
+                          },
+                          icon: Icon(
+                              isVisible ? Icons.visibility_off : Icons.visibility),
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 14,
@@ -51,13 +82,13 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       child: ElevatedButton(
                         style: buttonStyle(),
                         onPressed: () {
-                          Get.toNamed('/OtpVerification');
+                          Get.offNamed('/LogIn');
                         },
-                        child: const Icon(Icons.arrow_circle_right_outlined),
+                        child: const Text('Confirm'),
                       ),
                     ),
                     const SizedBox(
-                      height: 22,
+                      height: 25,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

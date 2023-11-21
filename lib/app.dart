@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taskmanager_apps_api/ui/screen/botton_navbar_base.dart';
-import 'package:taskmanager_apps_api/ui/screen/email_verification_screen.dart';
-import 'package:taskmanager_apps_api/ui/screen/login_screen.dart';
-import 'package:taskmanager_apps_api/ui/screen/otp_verification_screen.dart';
-import 'package:taskmanager_apps_api/ui/screen/raset_password.dart';
-import 'package:taskmanager_apps_api/ui/screen/signup_screen.dart';
-import 'package:taskmanager_apps_api/ui/screen/splash_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/screen/botton_navbar_base.dart';
+import 'package:taskmanager_apps_api/ui/screen/logIn/email_verification_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/logIn/login_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/logIn/otp_verification_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/logIn/raset_password.dart';
+import 'package:taskmanager_apps_api/ui/screen/logIn/signup_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/logIn/splash_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({super.key});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskmanager_apps_api/ui/widgets/screen_background.dart';
 
-import '../../style_file/style.dart';
+import '../../../style_file/style.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
