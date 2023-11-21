@@ -17,7 +17,7 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
 
    final List<Widget> _screen = const[
      NewTaskScreen(),
-     InProgressTaskScreen(),
+     InProgressScreen(),
      CancelTaskScreen(),
      CompletedTaskScreen(),
 

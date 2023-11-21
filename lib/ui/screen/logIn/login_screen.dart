@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       Get.offNamed('/ButtonNavBar');
                     },
-                    child: const Icon(Icons.arrow_forward_ios),
+                    child: const Icon(Icons.arrow_forward_ios,color: Colors.white,),
                   ),
                 ),
                 const SizedBox(

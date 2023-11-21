@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taskmanager_apps_api/ui/screen/screen/add_new_task_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/screen/botton_navbar_base.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/email_verification_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/login_screen.dart';
@@ -34,6 +35,7 @@ class TaskManagerApp extends StatelessWidget {
         GetPage(name: '/ResetPassword', page: ()=> const ResetPasswordScreen()),
         GetPage(name: '/SignUpScreen', page: ()=> const SignUpScreen()),
         GetPage(name: '/ButtonNavBar', page: ()=> const ButtonNavBar()),
+        GetPage(name: '/AddNewTaskScreen', page: ()=> const AddNewTaskScreen()),
       ],
     );
   }
