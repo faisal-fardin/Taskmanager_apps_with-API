@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserProfileBanner extends StatelessWidget {
   const UserProfileBanner({
@@ -9,7 +10,7 @@ class UserProfileBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-
+        Get.toNamed('UpdateProfileScreen');
       },
       child: const ListTile(
         contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),

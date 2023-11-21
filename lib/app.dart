@@ -10,6 +10,7 @@ import 'package:taskmanager_apps_api/ui/screen/logIn/otp_verification_screen.dar
 import 'package:taskmanager_apps_api/ui/screen/logIn/raset_password.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/signup_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/splash_screen.dart';
+import 'package:taskmanager_apps_api/ui/screen/screen/update_profile_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({super.key});
@@ -36,6 +37,7 @@ class TaskManagerApp extends StatelessWidget {
         GetPage(name: '/SignUpScreen', page: ()=> const SignUpScreen()),
         GetPage(name: '/ButtonNavBar', page: ()=> const ButtonNavBar()),
         GetPage(name: '/AddNewTaskScreen', page: ()=> const AddNewTaskScreen()),
+        GetPage(name: '/UpdateProfileScreen', page: ()=> const UpdateProfileScreen()),
       ],
     );
   }
