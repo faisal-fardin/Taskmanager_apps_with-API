@@ -19,6 +19,7 @@ dependencies:
   get_storage:
   pin_code_fields:
   image_picker:
+  http:
 
 
 
