@@ -20,9 +20,6 @@ dependencies:
   pin_code_fields:
   image_picker:
   http:
-  easy_loader:
-
-
 
 
 dev_dependencies:

@@ -11,6 +11,14 @@ class AddNewTaskScreen extends StatefulWidget {
 }
 
 class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -22,38 +30,54 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                 const UserProfileBanner(),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 15,),
-                      const Text(
-                        'Add New Task',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 15,),
+                        const Text(
+                          'Add New Task',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
 
-                      TextFormField(
-                        decoration: appInputStyle('Title'),
-                      ),
-                      const SizedBox(height: 15,),
-                      TextFormField(
-                        maxLines: 4,
-                        decoration: appInputStyle('Description'),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: buttonStyle(),
-                          onPressed: () {
-
+                        TextFormField(
+                          controller: _titleController,
+                          decoration: appInputStyle('Title'),
+                          validator: (String? value) {
+                            if (value?.isEmpty ?? true) {
+                              return 'Enter Your Title';
+                            }
                           },
-                          child: const Icon(Icons.arrow_forward_ios,color: Colors.white,),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 15,),
+                        TextFormField(
+                          controller: _descriptionController,
+                          maxLines: 4,
+                          decoration: appInputStyle('Description'),
+                          validator: (String? value) {
+                          if (value?.isEmpty ?? true) {
+                            return 'Enter Your Description';
+                          }
+                        },
+
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: buttonStyle(),
+                            onPressed: () {
+
+                            },
+                            child: const Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

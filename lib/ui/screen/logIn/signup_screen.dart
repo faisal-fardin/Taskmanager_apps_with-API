@@ -1,4 +1,4 @@
-import 'package:easy_loader/easy_loader.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taskmanager_apps_api/data/models/network_response.dart';
