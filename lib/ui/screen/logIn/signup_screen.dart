@@ -200,9 +200,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.toNamed('/SignUpScreen');
+                          Get.toNamed('/LogIn');
                         },
-                        child: const Text('Sign up'),
+                        child: const Text('Log In'),
                       ),
                     ],
                   )
