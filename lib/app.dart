@@ -12,12 +12,19 @@ import 'package:taskmanager_apps_api/ui/screen/logIn/signup_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/splash_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/screen/update_profile_screen.dart';
 
-class TaskManagerApp extends StatelessWidget {
+class TaskManagerApp extends StatefulWidget {
+  static GlobalKey<ScaffoldState> globalKey = GlobalKey();
   const TaskManagerApp({super.key});
 
   @override
+  State<TaskManagerApp> createState() => _TaskManagerAppState();
+}
+
+class _TaskManagerAppState extends State<TaskManagerApp> {
+  @override
   Widget build(BuildContext context) {
     return  GetMaterialApp(
+      key: TaskManagerApp.globalKey,
       debugShowCheckedModeBanner: false,
       title: 'Task Manager App',
       theme: ThemeData(

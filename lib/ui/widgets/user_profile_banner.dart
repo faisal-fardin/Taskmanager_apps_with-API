@@ -35,7 +35,7 @@ class UserProfileBanner extends StatelessWidget {
             await AuthUtility.clearUserInfo();
             Get.offNamed('/LogIn');
           },
-          icon: const Icon(Icons.login_outlined),
+          icon: const Icon(Icons.login_outlined , color: Colors.white, size: 30,),
         ),
       ),
     );
