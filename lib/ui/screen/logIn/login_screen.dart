@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taskmanager_apps_api/data/models/auth_utility.dart';
+import 'package:taskmanager_apps_api/data/models/login_model.dart';
 import 'package:taskmanager_apps_api/data/models/network_response.dart';
 import 'package:taskmanager_apps_api/data/services/network_caller.dart';
 import 'package:taskmanager_apps_api/ui/widgets/screen_background.dart';
@@ -36,6 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if(mounted){setState(() {});}
 
     if(response.isSuccess){
+     LoginModel model = LoginModel.fromJson(response.body ?? '{}');
+     await AuthUtility.saveUserInfo(model);
+
       Get.offNamed('/ButtonNavBar');
     }else{
       if(mounted){

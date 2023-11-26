@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:taskmanager_apps_api/data/models/auth_utility.dart';
 import 'package:taskmanager_apps_api/ui/utils/assets_utils.dart';
 import 'package:taskmanager_apps_api/ui/widgets/screen_background.dart';
 
@@ -20,8 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
   void navigateLogIn(){
-    Future.delayed(const Duration(seconds: 3)).then((_) {
-      Get.offNamed('/LogIn');
+
+    Future.delayed(const Duration(seconds: 3)).then((_) async {
+      final bool isUserLogin = await AuthUtility.checkUserLogin();
+      isUserLogin ? Get.offNamed('/ButtonNavBar') : Get.offNamed('/LogIn');
     });
   }
 
