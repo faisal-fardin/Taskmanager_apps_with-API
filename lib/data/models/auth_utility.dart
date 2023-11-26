@@ -8,9 +8,11 @@ class AuthUtility{
 
   AuthUtility._();
 
+  static LoginModel userInfo = LoginModel();
+
   static Future<void> saveUserInfo(LoginModel model) async{
     SharedPreferences _sharedPreferences = await SharedPreferences.getInstance();
-    await _sharedPreferences.setString('user-data', model.toJson().toString());
+    await _sharedPreferences.setString('user-data', jsonEncode(model.toJson()));
   }
 
   static Future<LoginModel> getUserInfo() async{
@@ -26,7 +28,13 @@ class AuthUtility{
 
   static Future<bool> checkUserLogin() async {
     SharedPreferences _sharedPreferences = await SharedPreferences.getInstance();
-    return _sharedPreferences.containsKey('user-data');
+    bool  isLogin =  _sharedPreferences.containsKey('user-data');
+    if(isLogin){
+      userInfo =  await getUserInfo();
+    }
+
+    return isLogin;
+
   }
 
 

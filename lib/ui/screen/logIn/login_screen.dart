@@ -40,8 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if(response.isSuccess){
      LoginModel model = LoginModel.fromJson(response.body ?? '{}');
      await AuthUtility.saveUserInfo(model);
-
       Get.offNamed('/ButtonNavBar');
+
     }else{
       if(mounted){
         ScaffoldMessenger.of(context)
