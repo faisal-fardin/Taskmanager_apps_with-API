@@ -30,6 +30,13 @@ class UserProfileBanner extends StatelessWidget {
              const Icon(Icons.image);
           },
         ),
+        trailing: IconButton(
+          onPressed: () async{
+            await AuthUtility.clearUserInfo();
+            Get.offNamed('/LogIn');
+          },
+          icon: const Icon(Icons.login_outlined),
+        ),
       ),
     );
   }

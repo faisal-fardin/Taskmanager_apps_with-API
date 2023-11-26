@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager_apps_api/ui/widgets/usere_profile_banner.dart';
+import 'package:taskmanager_apps_api/ui/widgets/user_profile_banner.dart';
 
 import '../../../style_file/style.dart';
 

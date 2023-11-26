@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../widgets/list_tile_item.dart';
 import '../../widgets/summary_card.dart';
-import '../../widgets/usere_profile_banner.dart';
+import '../../widgets/user_profile_banner.dart';
 
 
 class NewTaskScreen extends StatelessWidget {
