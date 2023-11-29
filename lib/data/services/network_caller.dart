@@ -8,14 +8,11 @@ import 'package:taskmanager_apps_api/data/models/network_response.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/login_screen.dart';
 
 class NetworkCaller {
-  Future<NetworkResponse> getRequest(
-    String url,
-  ) async {
+  Future<NetworkResponse> getRequest(String url) async {
     try {
-      Response response = await get(
-        Uri.parse(url),
-        headers: {'token': AuthUtility.userInfo.token!.toString()},
-      );
+      Response response = await get(Uri.parse(url),headers: {
+        'token' : AuthUtility.userInfo.token.toString()
+      });
       if (response.statusCode == 200) {
         return NetworkResponse(
             true, response.statusCode, jsonDecode(response.body));
@@ -28,6 +25,9 @@ class NetworkCaller {
     return NetworkResponse(false, -1, null);
   }
 
+
+
+
   Future<NetworkResponse> postRequest(
       String url, Map<String, dynamic> body) async {
     try {
@@ -35,7 +35,7 @@ class NetworkCaller {
         Uri.parse(url),
         headers: {
           'Content-Type': 'application/json',
-          'token': AuthUtility.userInfo.token!.toString()
+          'token' : AuthUtility.userInfo.token.toString()
         },
         body: jsonEncode(body),
       );
@@ -58,7 +58,6 @@ class NetworkCaller {
 
   Future<void> _gotoLogin() async {
     await AuthUtility.clearUserInfo();
-
     Navigator.pushAndRemoveUntil(
         TaskManagerApp.globalKey.currentState!.context,
         MaterialPageRoute(builder: (context) => const LoginScreen()),

@@ -27,18 +27,18 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     }
     final NetworkResponse response =
         await NetworkCaller().postRequest(Urls.createTask, <String, dynamic>{
-
       "title": _titleController.text.trim(),
       "description": _descriptionController.text.trim(),
       "status": "New"
     });
+
     _addNewTaskInProgress = false;
     if (mounted) {
       setState(() {});
     }
     if(response.isSuccess){
       _titleController.clear();
-      _titleController.clear();
+      _descriptionController.clear();
       if(mounted){
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('New Task added Successfully')));
@@ -109,8 +109,14 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                         visible: _addNewTaskInProgress == false,
                         replacement: const Center(child: CircularProgressIndicator(),),
                         child: ElevatedButton(
+
                           style: buttonStyle(),
-                          onPressed: () {},
+                          onPressed: () {
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            addNewTask();
+                          },
                           child: const Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.white,

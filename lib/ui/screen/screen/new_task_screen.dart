@@ -56,7 +56,7 @@ class NewTaskScreen extends StatelessWidget {
               },
               ),
             ),
-          ],
+          ]                        ,
         ),
       ),
       floatingActionButton: FloatingActionButton(
