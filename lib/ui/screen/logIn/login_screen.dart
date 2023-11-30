@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final NetworkResponse response = await NetworkCaller().postRequest(Urls.logIn, <String , dynamic>{
       "email": _emailController.text.trim(),
       "password": _passController.text,
-    });
+    } , isLogin: true);
 
     _isLogINProgress = false;
     if(mounted){setState(() {});}
