@@ -103,6 +103,7 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                         }
                       },
                     ),
+                    SizedBox(height: 20,),
                     SizedBox(
                       width: double.infinity,
                       child: Visibility(

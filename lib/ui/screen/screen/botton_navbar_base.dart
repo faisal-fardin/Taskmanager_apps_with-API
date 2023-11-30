@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../data/models/new_task_status_model.dart';
 import 'cancel_task_screen.dart';
 import 'completed_task_screen.dart';
 import 'in_progress_screen.dart';
@@ -12,6 +13,8 @@ class ButtonNavBar extends StatefulWidget {
 }
 
 class _ButtonNavBarState extends State<ButtonNavBar> {
+
+  NewTaskStatusModel _newTaskStatusModel = NewTaskStatusModel();
 
    int _selectedIndex = 0;
 

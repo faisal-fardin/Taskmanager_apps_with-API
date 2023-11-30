@@ -4,7 +4,7 @@
 class SummaryCountModel {
   SummaryCountModel({
       String? status, 
-      List<Data>? data,}){
+      List<SummaryData>? data,}){
     _status = status;
     _data = data;
 }
@@ -14,19 +14,19 @@ class SummaryCountModel {
     if (json['data'] != null) {
       _data = [];
       json['data'].forEach((v) {
-        _data?.add(Data.fromJson(v));
+        _data?.add(SummaryData.fromJson(v));
       });
     }
   }
   String? _status;
-  List<Data>? _data;
+  List<SummaryData>? _data;
 SummaryCountModel copyWith({  String? status,
-  List<Data>? data,
+  List<SummaryData>? data,
 }) => SummaryCountModel(  status: status ?? _status,
   data: data ?? _data,
 );
   String? get status => _status;
-  List<Data>? get data => _data;
+  List<SummaryData>? get data => _data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -42,23 +42,23 @@ SummaryCountModel copyWith({  String? status,
 /// _id : "Pocha"
 /// sum : 1
 
-class Data {
-  Data({
+class SummaryData {
+  SummaryData({
       String? id, 
       num? sum,}){
     _id = id;
     _sum = sum;
 }
 
-  Data.fromJson(dynamic json) {
+  SummaryData.fromJson(dynamic json) {
     _id = json['_id'];
     _sum = json['sum'];
   }
   String? _id;
   num? _sum;
-Data copyWith({  String? id,
+SummaryData copyWith({  String? id,
   num? sum,
-}) => Data(  id: id ?? _id,
+}) => SummaryData(  id: id ?? _id,
   sum: sum ?? _sum,
 );
   String? get id => _id;

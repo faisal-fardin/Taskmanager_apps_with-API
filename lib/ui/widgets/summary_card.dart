@@ -7,12 +7,12 @@ class SummaryCard extends StatelessWidget {
   });
 
   final String title;
-  final int number;
+  final num number;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 50,
+      width: 100,
       height: 80,
       child: Card(
         elevation: 3,

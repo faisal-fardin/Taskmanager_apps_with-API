@@ -1,12 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taskmanager_apps_api/data/models/network_response.dart';
+import 'package:taskmanager_apps_api/data/models/new_task_status_model.dart';
+import 'package:taskmanager_apps_api/data/models/summary_count_model.dart';
+import 'package:taskmanager_apps_api/data/services/network_caller.dart';
+import '../../../data/utlis/urls.dart';
 import '../../widgets/list_tile_item.dart';
 import '../../widgets/summary_card.dart';
 import '../../widgets/user_profile_banner.dart';
 
+class NewTaskScreen extends StatefulWidget {
+  const NewTaskScreen({
+    super.key,
+  });
 
-class NewTaskScreen extends StatelessWidget {
-  const NewTaskScreen({super.key});
+  @override
+  State<NewTaskScreen> createState() => _NewTaskScreenState();
+}
+
+class _NewTaskScreenState extends State<NewTaskScreen> {
+  bool _getCountSummaryInProgress = false, _getNewTaskInProgress = false;
+  SummaryCountModel _summaryCountModel = SummaryCountModel();
+  NewTaskStatusModel _newTaskStatusModel = NewTaskStatusModel();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      getCountSummary();
+      getNewTask();
+    });
+  }
+
+  Future<void> getCountSummary() async {
+    _getCountSummaryInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+
+    final NetworkResponse response =
+        await NetworkCaller().getRequest(Urls.taskStatusCount);
+
+    if (response.isSuccess) {
+      _summaryCountModel = SummaryCountModel.fromJson(response.body!);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Summary data get failed')));
+      }
+    }
+    _getCountSummaryInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  Future<void> getNewTask() async {
+    _getNewTaskInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+    final NetworkResponse response =
+        await NetworkCaller().getRequest(Urls.newTasks);
+
+    if (response.isSuccess) {
+      _newTaskStatusModel = NewTaskStatusModel.fromJson(response.body!);
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Get new task failed')));
+      }
+    }
+    _getNewTaskInProgress = false;
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,59 +84,64 @@ class NewTaskScreen extends StatelessWidget {
         child: Column(
           children: [
             const UserProfileBanner(),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: SummaryCard(
-                    title: 'New',
-                    number: 123,
-                  )),
-                  Expanded(
-                      child: SummaryCard(
-                    title: 'Progress',
-                    number: 123,
-                  )),
-                  Expanded(
-                      child: SummaryCard(
-                    title: 'Cancel',
-                    number: 123,
-                  )),
-                  Expanded(
-                      child: SummaryCard(
-                    title: 'Completed',
-                    number: 123,
-                  )),
-                ],
-              ),
-            ),
+            _getCountSummaryInProgress
+                ? const LinearProgressIndicator()
+                : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                      height: 80,
+                      width: double.infinity,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _summaryCountModel.data?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return  Expanded(
+                              child: SummaryCard(
+                            title: _summaryCountModel.data![index].id ?? 'New',
+                            number: _summaryCountModel.data![index].sum ?? 0,
+                          ));
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const Divider();
+                        },
+                      ),
+                    ),
+                ),
             Expanded(
-              child: ListView.separated(
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return const TaskListTile(
-                    title: 'Title will be here',
-                    subTitle: 'Title will be here',
-                    chip: 'New', color: Colors.blue,
-                  );
-                }, separatorBuilder: (BuildContext context, int index) {
-                  return const Divider();
-              },
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  getNewTask();
+                },
+                child: _getNewTaskInProgress
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.separated(
+                        itemCount: _newTaskStatusModel.data?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return TaskListTile(
+                            taskData: _newTaskStatusModel.data![index],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const Divider();
+                        },
+                      ),
               ),
             ),
-          ]                        ,
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
-        onPressed: (){
+        onPressed: () {
           Get.toNamed('/AddNewTaskScreen');
         },
-        child: const Icon(Icons.add , color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
 }
-
-

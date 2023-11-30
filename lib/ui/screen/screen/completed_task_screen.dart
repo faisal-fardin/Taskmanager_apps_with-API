@@ -19,11 +19,10 @@ class CompletedTaskScreen extends StatelessWidget {
               child: ListView.separated(
                 itemCount: 20,
                 itemBuilder: (context, index) {
-                  return const TaskListTile(
-                    title: 'Title will be here',
-                    subTitle: 'Title will be here',
-                    chip: 'Completed', color: Colors.green
-                  );
+                  return SizedBox();
+                  // return  TaskListTile(
+                  //   taskData: null,
+                  // );
                 }, separatorBuilder: (BuildContext context, int index) {
                 return const Divider();
               },
