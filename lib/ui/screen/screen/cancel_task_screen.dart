@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../widgets/list_tile_item.dart';
-
 import '../../widgets/user_profile_banner.dart';
 
 
