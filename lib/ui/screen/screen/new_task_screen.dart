@@ -4,6 +4,7 @@ import 'package:taskmanager_apps_api/data/models/network_response.dart';
 import 'package:taskmanager_apps_api/data/models/new_task_status_model.dart';
 import 'package:taskmanager_apps_api/data/models/summary_count_model.dart';
 import 'package:taskmanager_apps_api/data/services/network_caller.dart';
+import 'package:taskmanager_apps_api/ui/screen/screen/update_task_status.dart';
 import '../../../data/utlis/urls.dart';
 import '../../../style_file/style.dart';
 import '../../widgets/list_tile_item.dart';
@@ -92,6 +93,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,8 +143,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                               deleteTask(_newTaskStatusModel.data![index].id!);
                             },
                             onEditTap: () {
-                              // showEditBottomShit(
-                              //     _newTaskStatusModel.data![index]);
+                              // showEditBottomShit(_newTaskStatusModel.data![index]);
+                              showUpdateStatusBottomShit(
+                                  _newTaskStatusModel.data![index]);
                             },
                           );
                         },
@@ -172,9 +176,27 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   //     context: context,
   //     isScrollControlled: true,
   //     builder: (context) {
-  //       return UpdateTaskBottomSheet(data: data,);
+  //       return UpdateTaskBottomSheet(
+  //         data: data,
+  //         onUpdate: () {
+  //
+  //         },
+  //       );
   //     },
   //   );
   // }
-}
 
+  void showUpdateStatusBottomShit(TaskData data) {
+
+
+    showModalBottomSheet(
+      isScrollControlled: false,
+      context: context,
+      builder: (context) {
+        return UpdateTaskStatus(data: data, onUpdate: (){
+          getNewTask();
+        });
+      },
+    );
+  }
+}
