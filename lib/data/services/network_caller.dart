@@ -29,9 +29,6 @@ class NetworkCaller {
     return NetworkResponse(false, -1, null);
   }
 
-
-
-
   Future<NetworkResponse> postRequest(
       String url, Map<String, dynamic> body , {bool isLogin = false}) async {
     try {

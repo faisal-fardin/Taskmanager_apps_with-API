@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:taskmanager_apps_api/data/models/new_task_status_model.dart';
 
 class TaskListTile extends StatelessWidget {
-  const TaskListTile({
+  final VoidCallback onDeleteTap, onEditTap;
+
+   TaskListTile({
     super.key,
-    required this.taskData,
+    required this.taskData, required this.onDeleteTap, required this.onEditTap,
   });
 
 
@@ -29,8 +31,8 @@ class TaskListTile extends StatelessWidget {
                 backgroundColor: Colors.blue,
               ),
               const Spacer(),
-              IconButton(onPressed: (){}, icon: const Icon(Icons.delete_forever, color: Colors.red,),),
-              IconButton(onPressed: (){}, icon: const Icon(Icons.edit, color: Colors.green,),),
+              IconButton(onPressed: onDeleteTap, icon: const Icon(Icons.delete_forever, color: Colors.red,),),
+              IconButton(onPressed: onEditTap, icon: const Icon(Icons.edit, color: Colors.green,),),
 
             ],
           ),
