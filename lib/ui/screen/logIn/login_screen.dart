@@ -77,7 +77,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     controller: _emailController,
+
                     decoration: appInputStyle('Email'),
+
                     validator: (String? value) {
                       if (value?.isEmpty ?? true) {
                         return 'Enter Your Email';

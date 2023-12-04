@@ -5,8 +5,8 @@ import 'package:taskmanager_apps_api/data/models/new_task_status_model.dart';
 import 'package:taskmanager_apps_api/data/models/summary_count_model.dart';
 import 'package:taskmanager_apps_api/data/services/network_caller.dart';
 import 'package:taskmanager_apps_api/ui/screen/screen/update_task_status.dart';
+import 'package:taskmanager_apps_api/ui/widgets/screen_background.dart';
 import '../../../data/utlis/urls.dart';
-import '../../../style_file/style.dart';
 import '../../widgets/list_tile_item.dart';
 import '../../widgets/summary_card.dart';
 import '../../widgets/user_profile_banner.dart';
@@ -99,63 +99,65 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            const UserProfileBanner(),
-            _getCountSummaryInProgress
-                ? const LinearProgressIndicator()
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      height: 80,
-                      width: double.infinity,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: _summaryCountModel.data?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          return Expanded(
-                              child: SummaryCard(
-                            title: _summaryCountModel.data![index].id ?? 'New',
-                            number: _summaryCountModel.data![index].sum ?? 0,
-                          ));
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const Divider();
-                        },
+        child: ScreenBackground(
+          child: Column(
+            children: [
+              const UserProfileBannerAppBar(),
+              _getCountSummaryInProgress
+                  ? const LinearProgressIndicator()
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 80,
+                        width: double.infinity,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _summaryCountModel.data?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return Expanded(
+                                child: SummaryCard(
+                              title: _summaryCountModel.data![index].id ?? 'New',
+                              number: _summaryCountModel.data![index].sum ?? 0,
+                            ));
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const Divider();
+                          },
+                        ),
                       ),
                     ),
-                  ),
-            Expanded(
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  getNewTask();
-                },
-                child: _getNewTaskInProgress
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : ListView.separated(
-                        itemCount: _newTaskStatusModel.data?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          return TaskListTile(
-                            taskData: _newTaskStatusModel.data![index],
-                            onDeleteTap: () {
-                              deleteTask(_newTaskStatusModel.data![index].id!);
-                            },
-                            onEditTap: () {
-                              // showEditBottomShit(_newTaskStatusModel.data![index]);
-                              showUpdateStatusBottomShit(
-                                  _newTaskStatusModel.data![index]);
-                            },
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const Divider();
-                        },
-                      ),
+              Expanded(
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    getNewTask();
+                  },
+                  child: _getNewTaskInProgress
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.separated(
+                          itemCount: _newTaskStatusModel.data?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return TaskListTile(
+                              taskData: _newTaskStatusModel.data![index],
+                              onDeleteTap: () {
+                                deleteTask(_newTaskStatusModel.data![index].id!);
+                              },
+                              onEditTap: () {
+                                // showEditBottomShit(_newTaskStatusModel.data![index]);
+                                showUpdateStatusBottomShit(
+                                    _newTaskStatusModel.data![index]);
+                              },
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const Divider();
+                          },
+                        ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -187,8 +189,6 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   // }
 
   void showUpdateStatusBottomShit(TaskData data) {
-
-
     showModalBottomSheet(
       isScrollControlled: false,
       context: context,

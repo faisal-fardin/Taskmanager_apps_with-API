@@ -11,7 +11,7 @@ class CancelTaskScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const UserProfileBanner(),
+            const UserProfileBannerAppBar(),
             Expanded(
               child: ListView.separated(
                 itemCount: 20,
