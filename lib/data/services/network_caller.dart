@@ -47,7 +47,7 @@ class NetworkCaller {
             true, response.statusCode, jsonDecode(response.body));
 
       } else if (response.statusCode == 401) {
-        if(isLogin){
+        if(isLogin == false){
           _gotoLogin();
         }
       } else {

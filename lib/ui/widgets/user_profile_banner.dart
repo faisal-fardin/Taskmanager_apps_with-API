@@ -75,11 +75,14 @@ class _UserProfileBannerAppBarState extends State<UserProfileBannerAppBar> {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(AuthUtility.userInfo.data?.photo ?? ''),
-                    onBackgroundImageError: (_,__){
-                      const Icon(Icons.image);
-                    },
+                    child: CachedNetworkImage(
+                      placeholder: (_,__) => const Icon(Icons.image),
+                      imageUrl: AuthUtility.userInfo.data?.photo ?? '',
+                      errorWidget: (_,__,___) => const Icon(Icons.account_circle_outlined,),
+                    ),
                   ),
+                  
+                  
                   // CachedNetworkImage(
                   //   placeholder: (_, __) => const Icon(Icons.account_circle_outlined),
                   //   imageUrl: AuthUtility.userInfo.data?.photo ?? '',
