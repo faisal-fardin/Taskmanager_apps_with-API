@@ -40,7 +40,7 @@ class _TaskManagerAppState extends State<TaskManagerApp> {
         GetPage(name: '/LogIn', page: ()=> const LoginScreen()),
         GetPage(name: '/EmailVerification', page: ()=> const EmailVerificationScreen()),
         GetPage(name: '/OtpVerification', page: ()=> const OtpVerificationScreen(email: '',)),
-        GetPage(name: '/ResetPassword', page: ()=> const ResetPasswordScreen()),
+        GetPage(name: '/ResetPassword', page: ()=> const ResetPasswordScreen(email: '', otp: '',)),
         GetPage(name: '/SignUpScreen', page: ()=> const SignUpScreen()),
         GetPage(name: '/ButtonNavBar', page: ()=> const ButtonNavBar()),
         GetPage(name: '/AddNewTaskScreen', page: ()=> const AddNewTaskScreen()),
