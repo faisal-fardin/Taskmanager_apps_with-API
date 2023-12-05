@@ -10,6 +10,9 @@ class Urls{
   static String newTasks = '$_baseUrl/listTaskByStatus/New';
   static String inProgressTask = '$_baseUrl/listTaskByStatus/Progress';
   static String updateProfile = '$_baseUrl/profileUpdate';
+
+  static String sendOTPEmail(String email) => '$_baseUrl/RecoverVerifyEmail/$email';
+
   static String deleteTask(String id) => '$_baseUrl/deleteTask/$id';
 
   static String updateTask(String id, String status) => '$_baseUrl/updateTaskStatus/$id/$status';

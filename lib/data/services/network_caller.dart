@@ -8,6 +8,7 @@ import 'package:taskmanager_apps_api/data/models/network_response.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/login_screen.dart';
 
 class NetworkCaller {
+
   Future<NetworkResponse> getRequest(String url) async {
     try {
       Response response = await get(Uri.parse(url),headers: {
@@ -29,9 +30,9 @@ class NetworkCaller {
     return NetworkResponse(false, -1, null);
   }
 
-  Future<NetworkResponse> postRequest(
-      String url, Map<String, dynamic> body , {bool isLogin = false}) async {
+  Future<NetworkResponse> postRequest(String url, Map<String, dynamic> body , {bool isLogin = false}) async {
     try {
+      log(body.toString());
       Response response = await post(
         Uri.parse(url),
         headers: {
@@ -66,4 +67,6 @@ class NetworkCaller {
         MaterialPageRoute(builder: (context) => const LoginScreen()),
         (route) => false);
   }
+
+
 }

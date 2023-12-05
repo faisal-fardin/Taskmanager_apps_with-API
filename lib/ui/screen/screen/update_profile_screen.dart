@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskmanager_apps_api/data/models/auth_utility.dart';
 import 'package:taskmanager_apps_api/data/models/network_response.dart';
 import 'package:taskmanager_apps_api/data/services/network_caller.dart';
 import 'package:taskmanager_apps_api/data/utlis/urls.dart';
 import 'package:taskmanager_apps_api/ui/widgets/screen_background.dart';
+import '../../../data/models/login_model.dart';
 import '../../../style_file/style.dart';
 import '../../widgets/user_profile_banner.dart';
 
@@ -20,7 +20,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   bool isVisible = true;
   XFile? localImagePath;
 
-  final userData = AuthUtility.userInfo.data;
+  UserData  userData = AuthUtility.userInfo.data!;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -30,10 +31,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   @override
   void initState() {
-    _emailController.text = userData?.email ?? '';
-    _firstNameController.text = userData?.firstName ?? '';
-    _lastNameController.text = userData?.lastName ?? '';
-    _phoneController.text = userData?.mobile ?? '';
+    _emailController.text = userData.email ?? '';
+    _firstNameController.text = userData.firstName ?? '';
+    _lastNameController.text = userData.lastName ?? '';
+    _phoneController.text = userData.mobile ?? '';
     super.initState();
   }
 
@@ -61,7 +62,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     if (mounted) {
       setState(() {});
     }
-
     if (response.isSuccess) {
       _passController.clear();
       if (mounted) {

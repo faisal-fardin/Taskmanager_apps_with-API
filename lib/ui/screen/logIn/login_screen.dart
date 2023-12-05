@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        Get.offNamed('/EmailVerification');
+                        Get.toNamed('/EmailVerification');
                       },
                       child: const Text(
                         'Forgot Password?',
