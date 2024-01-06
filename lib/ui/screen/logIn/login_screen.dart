@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taskmanager_apps_api/data/models/auth_utility.dart';
-import 'package:taskmanager_apps_api/data/models/login_model.dart';
-import 'package:taskmanager_apps_api/data/models/network_response.dart';
-import 'package:taskmanager_apps_api/data/services/network_caller.dart';
+import 'package:taskmanager_apps_api/ui/state_managers/login_controller.dart';
 import 'package:taskmanager_apps_api/ui/widgets/screen_background.dart';
-
-import '../../../data/utlis/urls.dart';
 import '../../../style_file/style.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,35 +18,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
-  bool _isLogINProgress = false;
-
-  Future<void> logIn() async{
-    _isLogINProgress = true;
-    if(mounted){
-      setState(() {});}
-    final NetworkResponse response = await NetworkCaller().postRequest(Urls.logIn, <String , dynamic>{
-      "email": _emailController.text.trim(),
-      "password": _passController.text,
-    } , isLogin: true);
-
-    _isLogINProgress = false;
-    if(mounted){setState(() {});}
-
-    if(response.isSuccess){
-     LoginModel model = LoginModel.fromJson(response.body ?? '{}');
-     await AuthUtility.saveUserInfo(model);
-      Get.offNamed('/ButtonNavBar');
-
-    }else{
-      if(mounted){
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Incorrect email or password')));
-      }
-
-    }
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 65,),
+                  const SizedBox(
+                    height: 65,
+                  ),
                   const Text(
                     'Get Started With',
                     style: TextStyle(
@@ -77,9 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     controller: _emailController,
-
                     decoration: appInputStyle('Email'),
-
                     validator: (String? value) {
                       if (value?.isEmpty ?? true) {
                         return 'Enter Your Email';
@@ -105,31 +71,48 @@ class _LoginScreenState extends State<LoginScreen> {
                             isVisible = !isVisible;
                           });
                         },
-                        icon: Icon(
-                            isVisible ? Icons.visibility_off : Icons.visibility),
+                        icon: Icon(isVisible
+                            ? Icons.visibility_off
+                            : Icons.visibility),
                       ),
                     ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Visibility(
-                      visible:  _isLogINProgress == false,
-                      replacement: const Center(child: CircularProgressIndicator()),
-                      child: ElevatedButton(
-                        style: buttonStyle(),
-                        onPressed: () {
-                          if (!_formKey.currentState!.validate()) {
-                            return;
-                          }
-                          logIn();
-                        },
-                        child: const Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                  GetBuilder<LoginController>(builder: (loginController) {
+                    return SizedBox(
+                      width: double.infinity,
+                      child: Visibility(
+                        visible: loginController.isLogINProgress == false,
+                        replacement:
+                            const Center(child: CircularProgressIndicator()),
+                        child: ElevatedButton(
+                          style: buttonStyle(),
+                          onPressed: () {
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            loginController.logIn(
+                              _emailController.text.trim(),
+                              _passController.text,
+                            )
+                                .then((result) {
+                              if (result == true) {
+                                Get.offNamed('/ButtonNavBar');
+                              } else {}
+                              Get.snackbar(
+                                  'Failed', 'Login Failed Please Try Again');
+                            });
+                          },
+                          child: const Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                   const SizedBox(
                     height: 16,
                   ),

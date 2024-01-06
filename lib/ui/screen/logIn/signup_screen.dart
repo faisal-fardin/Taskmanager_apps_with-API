@@ -181,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           userSignUp();
                         },
-                        child: const Icon(Icons.arrow_forward_ios),
+                        child: const Icon(Icons.arrow_forward_ios,color: Colors.white,),
                       ),
                     ),
                   ),

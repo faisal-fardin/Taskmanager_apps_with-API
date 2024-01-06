@@ -11,6 +11,7 @@ import 'package:taskmanager_apps_api/ui/screen/logIn/raset_password.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/signup_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/logIn/splash_screen.dart';
 import 'package:taskmanager_apps_api/ui/screen/screen/update_profile_screen.dart';
+import 'package:taskmanager_apps_api/ui/state_managers/login_controller.dart';
 
 class TaskManagerApp extends StatefulWidget {
   static GlobalKey<NavigatorState> globalKey = GlobalKey();
@@ -34,6 +35,7 @@ class _TaskManagerAppState extends State<TaskManagerApp> {
         brightness: Brightness.dark,
       ),
       themeMode: ThemeMode.light,
+      initialBinding: ControllerBinding(),
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: ()=> const SplashScreen()),
@@ -48,4 +50,13 @@ class _TaskManagerAppState extends State<TaskManagerApp> {
       ],
     );
   }
+}
+
+
+class ControllerBinding extends Bindings{
+  @override
+  void dependencies() {
+    Get.put<LoginController>(LoginController());
+  }
+
 }

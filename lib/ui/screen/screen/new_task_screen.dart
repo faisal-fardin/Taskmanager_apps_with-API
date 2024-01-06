@@ -93,8 +93,6 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,11 +112,11 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount: _summaryCountModel.data?.length ?? 0,
                           itemBuilder: (context, index) {
-                            return Expanded(
-                                child: SummaryCard(
-                              title: _summaryCountModel.data![index].id ?? 'New',
+                            return SummaryCard(
+                              title:
+                                  _summaryCountModel.data![index].id ?? 'New',
                               number: _summaryCountModel.data![index].sum ?? 0,
-                            ));
+                            );
                           },
                           separatorBuilder: (BuildContext context, int index) {
                             return const Divider();
@@ -141,7 +139,8 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                             return TaskListTile(
                               taskData: _newTaskStatusModel.data![index],
                               onDeleteTap: () {
-                                deleteTask(_newTaskStatusModel.data![index].id!);
+                                deleteTask(
+                                    _newTaskStatusModel.data![index].id!);
                               },
                               onEditTap: () {
                                 // showEditBottomShit(_newTaskStatusModel.data![index]);
@@ -193,9 +192,11 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
       isScrollControlled: false,
       context: context,
       builder: (context) {
-        return UpdateTaskStatus(data: data, onUpdate: (){
-          getNewTask();
-        });
+        return UpdateTaskStatus(
+            data: data,
+            onUpdate: () {
+              getNewTask();
+            });
       },
     );
   }
